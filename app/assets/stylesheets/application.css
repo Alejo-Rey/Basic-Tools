@@ -1,10 +1,130 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Basic Tools - Application Styles
+ * Medieval fantasy theme with warm earth tones
  */
+
+@import "tailwindcss";
+
+@theme {
+  /* Custom Colors */
+  --color-brown: #8B4513;
+  --color-brown-light: #A0522D;
+  --color-brown-dark: #654321;
+
+  --color-beige: #D4A574;
+  --color-beige-light: #E8D4B8;
+  --color-beige-dark: #B8926A;
+
+  --color-cream: #F5E6D3;
+  --color-cream-light: #FFF8F0;
+  --color-cream-dark: #E8D4B8;
+
+  --color-blue: #4A90A4;
+  --color-blue-light: #7FB3C4;
+  --color-blue-dark: #2B5F75;
+
+  --color-orange: #D97706;
+  --color-orange-light: #F59E0B;
+  --color-orange-dark: #B45309;
+
+  --color-wood: #5C4033;
+  --color-wood-light: #7D5A50;
+  --color-wood-dark: #3E2723;
+}
+
+/* Custom CSS Variables */
+:root {
+  /* Brown/Earth Tones */
+  --brown: #8B4513;
+  --brown-light: #A0522D;
+  --brown-dark: #654321;
+
+  /* Beige/Tan */
+  --beige: #D4A574;
+  --beige-light: #E8D4B8;
+  --beige-dark: #B8926A;
+
+  /* Cream/Paper */
+  --cream: #F5E6D3;
+  --cream-light: #FFF8F0;
+  --cream-dark: #E8D4B8;
+
+  /* Blue Accents */
+  --blue: #4A90A4;
+  --blue-light: #7FB3C4;
+  --blue-dark: #2B5F75;
+
+  /* Wood/Dark Backgrounds */
+  --wood: #5C4033;
+  --wood-light: #7D5A50;
+  --wood-dark: #3E2723;
+
+  /* Text Colors */
+  --text-primary: #2D2419;
+  --text-secondary: #5C4033;
+  --text-light: #FFF8F0;
+}
+
+/* Custom Component Styles */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-brown to-brown-dark text-cream font-bold py-3 px-8 rounded-lg hover:scale-105 transition-transform shadow-warm border-2 border-brown-dark;
+  }
+
+  .card {
+    @apply bg-cream rounded-xl shadow-warm-lg border-4 border-brown hover:border-blue transition-all p-6;
+  }
+
+  .card-dark {
+    @apply bg-gradient-to-br from-wood to-wood-dark rounded-xl shadow-warm-lg border-4 border-brown p-6 text-cream-light;
+  }
+
+  .input-field {
+    @apply w-full bg-cream-light border-2 border-brown-light rounded-lg px-4 py-3 text-wood-dark focus:border-blue focus:ring-2 focus:ring-blue focus:outline-none transition-colors;
+  }
+
+  .heading {
+    @apply text-brown font-bold;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--beige-light);
+  border-left: 2px solid var(--brown);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brown);
+  border-radius: 8px;
+  border: 2px solid var(--beige-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brown-light);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}

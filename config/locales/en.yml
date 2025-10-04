@@ -28,4 +28,42 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  app:
+    title: "Basic Tools"
+    description: "Useful tools and calculators"
+
+  navigation:
+    home: "Home"
+    tools: "Tools"
+    about: "About"
+    language: "Language"
+
+  tools:
+    pet_calculator:
+      title: "Pet Experience Calculator"
+      description: "Calculate the experience needed to level up your pets"
+      subtitle: "Calculate how much experience you need to reach your target level"
+      use_tool: "Use Tool"
+      current_level: "Current Level"
+      target_level: "Target Level"
+      resource_type: "Food Type"
+      calculate: "Calculate"
+      reset: "Reset"
+      results: "Results"
+      total_xp_needed: "Total XP Needed"
+      croquettes_needed: "Croquettes Needed"
+      total_cost: "Total Cost"
+      resource_used: "Resource Used"
+      level_breakdown: "Level by Level Breakdown"
+      level: "Level"
+      total_xp: "Total XP"
+      xp_to_next: "XP to Next"
+      croquettes: "Croquettes"
+      cost: "Cost"
+      error_message: "Target level must be higher than current level"
+
+  home:
+    welcome: "Welcome to Basic Tools"
+    subtitle: "Your essential toolkit"
+    available_tools: "Available Tools"
+    get_started: "Get Started"

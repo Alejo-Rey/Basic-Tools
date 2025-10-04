@@ -1,0 +1,35 @@
+/ Home page
+.text-center.mb-12
+  h1.text-5xl.font-bold.text-brown.mb-4= t('app.title')
+  p.text-xl.text-wood= t('app.description')
+
+/ Tools grid
+.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-8
+  / Pet Experience Calculator Card
+  .bg-cream.rounded-xl.shadow-warm-lg.border-4.border-brown.hover:border-blue.transition-all.hover:scale-105.p-6
+    .mb-6
+      h2.text-2xl.font-bold.text-brown.mb-3= t('tools.pet_calculator.title')
+      p.text-wood= t('tools.pet_calculator.description')
+
+    .flex.justify-center
+      = link_to pet_experience_calculator_path, class: "bg-gradient-to-r from-brown to-brown-dark text-cream font-bold py-3 px-8 rounded-lg hover:scale-105 transition-transform shadow-warm border-2 border-brown-dark" do
+        = t('tools.pet_calculator.use_tool')
+
+  / Placeholder for future tools
+  .bg-beige-light.rounded-xl.shadow-warm.border-4.border-beige-dark.p-6.opacity-60
+    .mb-6
+      h2.text-2xl.font-bold.text-brown-light.mb-3 Craft Calculator
+      p.text-wood-light Coming soon...
+
+    .flex.justify-center
+      button.bg-beige-dark.text-wood-light.font-bold.py-3.px-8.rounded-lg.cursor-not-allowed disabled="disabled"
+        | Coming Soon
+
+  .bg-beige-light.rounded-xl.shadow-warm.border-4.border-beige-dark.p-6.opacity-60
+    .mb-6
+      h2.text-2xl.font-bold.text-brown-light.mb-3 Resource Tracker
+      p.text-wood-light Coming soon...
+
+    .flex.justify-center
+      button.bg-beige-dark.text-wood-light.font-bold.py-3.px-8.rounded-lg.cursor-not-allowed disabled="disabled"
+        | Coming Soon

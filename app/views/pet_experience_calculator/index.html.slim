@@ -1,0 +1,62 @@
+/ Pet Experience Calculator
+.max-w-4xl.mx-auto
+  .text-center.mb-8
+    h1.text-4xl.font-bold.text-brown.mb-4= t('tools.pet_calculator.title')
+    p.text-xl.text-wood= t('tools.pet_calculator.subtitle')
+
+  / Calculator Form Card
+  .bg-cream.rounded-xl.shadow-warm-lg.border-4.border-brown.p-8.mb-8
+    = form_with url: pet_experience_calculator_path, method: :post, local: true, data: { turbo: false }, class: "space-y-6" do |f|
+      .grid.grid-cols-1.md:grid-cols-2.gap-6
+        / Current Level Input
+        .form-group
+          = f.label :current_level, t('tools.pet_calculator.current_level'), class: "block text-brown font-bold mb-2"
+          = f.number_field :current_level, min: 1, max: 99, value: params[:current_level] || 1, class: "w-full bg-cream-light border-2 border-brown-light rounded-lg px-4 py-3 text-wood-dark focus:border-blue focus:ring-2 focus:ring-blue focus:outline-none transition-colors", required: true
+
+        / Target Level Input
+        .form-group
+          = f.label :target_level, t('tools.pet_calculator.target_level'), class: "block text-brown font-bold mb-2"
+          = f.number_field :target_level, min: 2, max: 100, value: params[:target_level] || 100, class: "w-full bg-cream-light border-2 border-brown-light rounded-lg px-4 py-3 text-wood-dark focus:border-blue focus:ring-2 focus:ring-blue focus:outline-none transition-colors", required: true
+
+        / Resource Selection
+        .form-group
+          = f.label :resource_id, t('tools.pet_calculator.resource_type'), class: "block text-brown font-bold mb-2"
+          = f.select :resource_id, options_from_collection_for_select(@resources, :id, :name, params[:resource_id] || @resources.first&.id), {}, class: "w-full bg-cream-light border-2 border-brown-light rounded-lg px-4 py-3 text-wood-dark focus:border-blue focus:ring-2 focus:ring-blue focus:outline-none transition-colors", data: { action: "change->price-calculator#updateResourcePrice" }
+
+        / Resource Price Input
+        .form-group
+          = f.label :resource_price, t('tools.pet_calculator.resource_price'), class: "block text-brown font-bold mb-2"
+          = f.number_field :resource_price, min: 0, step: 1, value: params[:resource_price] || @resources.first&.average_price, class: "w-full bg-cream-light border-2 border-brown-light rounded-lg px-4 py-3 text-wood-dark focus:border-blue focus:ring-2 focus:ring-blue focus:outline-none transition-colors", data: { price_calculator_target: "price", action: "input->price-calculator#updateCost" }
+
+      / Buttons
+      .flex.space-x-4.justify-center
+        = f.submit t('tools.pet_calculator.calculate'), class: "bg-gradient-to-r from-brown to-brown-dark text-cream font-bold py-3 px-8 rounded-lg hover:scale-105 transition-transform cursor-pointer shadow-warm border-2 border-brown-dark"
+        = link_to t('tools.pet_calculator.reset'), pet_experience_calculator_path, class: "bg-beige-dark text-cream font-bold py-3 px-8 rounded-lg hover:bg-brown-light transition-colors border-2 border-brown"
+
+  / Results Section
+  - if @calculation_result.present?
+    - if @calculation_result[:success]
+      .bg-cream.rounded-xl.shadow-warm-lg.border-4.border-brown.p-8[data-controller="price-calculator" data-price-calculator-croquettes-value=@calculation_result[:croquettes_needed]]
+        h2.text-3xl.font-bold.text-brown.mb-6= t('tools.pet_calculator.results')
+
+        / Summary Cards
+        .grid.grid-cols-1.md:grid-cols-4.gap-4
+          .bg-wood-light.rounded-lg.p-4.text-center.border-2.border-brown
+            p.text-beige-light.text-sm.font-semibold= t('tools.pet_calculator.total_xp_needed')
+            p.text-3xl.font-bold.text-cream= number_with_delimiter(@calculation_result[:total_xp_needed])
+
+          .bg-wood-light.rounded-lg.p-4.text-center.border-2.border-brown
+            p.text-beige-light.text-sm.font-semibold= t('tools.pet_calculator.croquettes_needed')
+            p.text-3xl.font-bold.text-orange-light[data-price-calculator-target="croquettesNeeded"]= number_with_delimiter(@calculation_result[:croquettes_needed])
+
+          .bg-wood-light.rounded-lg.p-4.text-center.border-2.border-brown
+            p.text-beige-light.text-sm.font-semibold= t('tools.pet_calculator.total_cost')
+            p.text-2xl.font-bold.text-blue-light[data-price-calculator-target="totalCost"]= number_with_delimiter(@calculation_result[:total_cost]) + " K"
+
+          .bg-wood-light.rounded-lg.p-4.text-center.border-2.border-brown
+            p.text-beige-light.text-sm.font-semibold= t('tools.pet_calculator.resource_used')
+            p.text-xl.font-bold.text-cream= @calculation_result[:resource].name
+
+    - else
+      .bg-orange.bg-opacity-20.border-4.border-orange.rounded-xl.p-6.text-center
+        p.text-brown.font-bold.text-lg= @calculation_result[:error]

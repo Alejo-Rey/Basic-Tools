@@ -1,0 +1,40 @@
+es:
+  app:
+    title: "Herramientas Básicas"
+    description: "Herramientas útiles y calculadoras"
+
+  navigation:
+    home: "Inicio"
+    tools: "Herramientas"
+    about: "Acerca de"
+    language: "Idioma"
+
+  tools:
+    pet_calculator:
+      title: "Calculadora de Experiencia de Mascotas"
+      description: "Calcula la experiencia necesaria para subir de nivel a tus mascotas"
+      subtitle: "Calcula cuánta experiencia necesitas para alcanzar tu nivel objetivo"
+      use_tool: "Usar Herramienta"
+      current_level: "Nivel Actual"
+      target_level: "Nivel Objetivo"
+      resource_type: "Tipo de Comida"
+      calculate: "Calcular"
+      reset: "Reiniciar"
+      results: "Resultados"
+      total_xp_needed: "XP Total Necesaria"
+      croquettes_needed: "Croquetas Necesarias"
+      total_cost: "Costo Total"
+      resource_used: "Recurso Usado"
+      level_breakdown: "Desglose Nivel por Nivel"
+      level: "Nivel"
+      total_xp: "XP Total"
+      xp_to_next: "XP al Siguiente"
+      croquettes: "Croquetas"
+      cost: "Costo"
+      error_message: "El nivel objetivo debe ser mayor que el nivel actual"
+
+  home:
+    welcome: "Bienvenido a Herramientas Básicas"
+    subtitle: "Tu kit de herramientas esencial"
+    available_tools: "Herramientas Disponibles"
+    get_started: "Comenzar"

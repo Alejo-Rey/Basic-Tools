@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title= content_for(:title) || t('app.title')
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="mobile-web-app-capable" content="yes"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = yield :head
+
+    link rel="icon" href="/icon.png" type="image/png"
+    link rel="icon" href="/icon.svg" type="image/svg+xml"
+    link rel="apple-touch-icon" href="/icon.png"
+
+    link rel="stylesheet" href="/tailwind.css"
+    = javascript_importmap_tags
+
+  body.bg-cream-light.text-wood-dark.min-h-screen
+    / Header with navigation and language switcher
+    header.bg-wood.border-b-4.border-brown.shadow-warm-lg
+      .container.mx-auto.px-4.py-4
+        .flex.items-center.justify-between
+          / Logo
+          .flex.items-center
+            = link_to root_path, class: "text-2xl font-bold text-beige-light hover:text-cream transition-colors" do
+              = t('app.title')
+
+          / Navigation
+          nav.hidden.md:flex.space-x-6
+            = link_to t('navigation.home'), root_path, class: "text-beige hover:text-cream transition-colors"
+            = link_to t('navigation.tools'), root_path, class: "text-beige hover:text-cream transition-colors"
+            = link_to t('navigation.about'), '#', class: "text-beige hover:text-cream transition-colors"
+
+          / Language switcher
+          .flex.space-x-2
+            - I18n.available_locales.each do |locale|
+              = link_to locale.to_s.upcase, url_for(locale: locale), class: "px-3 py-1 rounded-lg #{I18n.locale == locale ? 'bg-brown text-cream font-bold border-2 border-brown-dark' : 'bg-beige-dark text-cream hover:bg-brown-light'} transition-colors"
+
+    / Main content
+    main.container.mx-auto.px-4.py-8
+      = yield
+
+    / Footer
+    footer.bg-wood.border-t-4.border-brown.mt-12
+      .container.mx-auto.px-4.py-6.text-center.text-beige-light
+        p= t('app.description')
+        p.text-sm.mt-2 &copy; #{Time.current.year} Basic Tools

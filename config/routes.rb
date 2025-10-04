@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Locale scope for internationalization
+  scope "(:locale)", locale: /en|es|fr/ do
+    root "home#index"
+
+    # Pet Experience Calculator
+    get "pet-calculator", to: "pet_experience_calculator#index", as: :pet_experience_calculator
+    post "pet-calculator", to: "pet_experience_calculator#index"
+  end
 end

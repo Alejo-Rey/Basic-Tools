@@ -1,0 +1,40 @@
+fr:
+  app:
+    title: "Outils de Base"
+    description: "Outils utiles et calculatrices"
+
+  navigation:
+    home: "Accueil"
+    tools: "Outils"
+    about: "À propos"
+    language: "Langue"
+
+  tools:
+    pet_calculator:
+      title: "Calculateur d'Expérience de Familiers"
+      description: "Calculez l'expérience nécessaire pour faire monter de niveau vos familiers"
+      subtitle: "Calculez combien d'expérience vous avez besoin pour atteindre votre niveau cible"
+      use_tool: "Utiliser l'Outil"
+      current_level: "Niveau Actuel"
+      target_level: "Niveau Cible"
+      resource_type: "Type de Nourriture"
+      calculate: "Calculer"
+      reset: "Réinitialiser"
+      results: "Résultats"
+      total_xp_needed: "XP Totale Nécessaire"
+      croquettes_needed: "Croquettes Nécessaires"
+      total_cost: "Coût Total"
+      resource_used: "Ressource Utilisée"
+      level_breakdown: "Détail Niveau par Niveau"
+      level: "Niveau"
+      total_xp: "XP Totale"
+      xp_to_next: "XP au Suivant"
+      croquettes: "Croquettes"
+      cost: "Coût"
+      error_message: "Le niveau cible doit être supérieur au niveau actuel"
+
+  home:
+    welcome: "Bienvenue aux Outils de Base"
+    subtitle: "Votre boîte à outils essentielle"
+    available_tools: "Outils Disponibles"
+    get_started: "Commencer"

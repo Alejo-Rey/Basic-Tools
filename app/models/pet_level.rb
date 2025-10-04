@@ -1,0 +1,2 @@
+class PetLevel < ApplicationRecord
+end
