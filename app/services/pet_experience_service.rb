@@ -17,10 +17,12 @@ class PetExperienceService
   # @param current_level [Integer] The pet's current level (1-99)
   # @param target_level [Integer] The desired target level (2-100)
   # @param resource_id [Integer, nil] Optional ID of the resource to use (defaults to Enriched Croquette)
-  def initialize(current_level, target_level, resource_id = nil)
+  # @param resource_price [Integer, nil] Optional custom price for the resource (overrides average_price)
+  def initialize(current_level, target_level, resource_id = nil, resource_price = nil)
     @current_level = current_level
     @target_level = target_level
     @resource = resource_id ? Resource.find(resource_id) : Resource.find_by(name: "Enriched Croquette")
+    @resource_price = resource_price || @resource.average_price
   end
 
   # Calculate all pet leveling requirements
@@ -77,11 +79,11 @@ class PetExperienceService
 
   # Calculate total cost in kamas
   #
-  # Multiplies total croquettes by the average market price of the selected resource
+  # Multiplies total croquettes by the resource price (custom or average market price)
   #
-  # @return [Decimal] Total cost in kamas
+  # @return [Integer] Total cost in kamas
   def total_cost
-    croquettes_needed * @resource.average_price
+    croquettes_needed * @resource_price
   end
 
   # Generate detailed breakdown of requirements per level
@@ -94,7 +96,7 @@ class PetExperienceService
   #   - total_xp [Integer] Cumulative XP at this level
   #   - xp_to_next [Integer] XP needed to reach next level
   #   - croquettes [Integer] Croquettes needed for this level
-  #   - cost [Decimal] Cost in kamas for this level
+  #   - cost [Integer] Cost in kamas for this level
   def level_breakdown
     levels = PetLevel.where("level > ? AND level <= ?", @current_level, @target_level).order(:level)
 
@@ -104,7 +106,7 @@ class PetExperienceService
         total_xp: level.total_xp,
         xp_to_next: level.xp_to_next_level,
         croquettes: level.croquettes_needed,
-        cost: level.croquettes_needed * @resource.average_price
+        cost: level.croquettes_needed * @resource_price
       }
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_04_221324) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_05_202019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_04_221324) do
     t.string "name"
     t.string "resource_type"
     t.integer "xp_value"
-    t.decimal "average_price"
+    t.integer "average_price"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

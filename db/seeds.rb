@@ -6,29 +6,13 @@ Resource.destroy_all
 # Create Resources (Pet Food)
 puts "Creating resources..."
 
-Resource.create!([
-  {
-    name: "Enriched Croquette",
-    resource_type: "pet_food",
-    xp_value: 500,
-    average_price: 15000, # Average market price in kamas
-    description: "Premium pet food that provides 500 XP. Can be bought with Kolossokens or Nuggets."
-  },
-  {
-    name: "Super Croquette",
-    resource_type: "pet_food",
-    xp_value: 300,
-    average_price: 8000,
-    description: "Good quality pet food that provides 300 XP."
-  },
-  {
-    name: "Basic Croquette",
-    resource_type: "pet_food",
-    xp_value: 100,
-    average_price: 3000,
-    description: "Basic pet food that provides 100 XP."
-  }
-])
+Resource.create!(
+  name: "Croquette",
+  resource_type: "pet_food",
+  xp_value: 500,
+  average_price: 15000, # Average market price in kamas
+  description: "Pet food that provides 500 XP per croquette."
+)
 
 # Create Pet Levels data based on user's detailed information
 puts "Creating pet level XP requirements..."

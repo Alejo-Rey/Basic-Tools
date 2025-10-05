@@ -16,5 +16,8 @@ Rails.application.routes.draw do
     # Pet Experience Calculator
     get "pet-calculator", to: "pet_experience_calculator#index", as: :pet_experience_calculator
     post "pet-calculator", to: "pet_experience_calculator#index"
+
+    # Resource price update
+    patch "resources/:id/update_price", to: "pet_experience_calculator#update_resource_price", as: :update_resource_price
   end
 end

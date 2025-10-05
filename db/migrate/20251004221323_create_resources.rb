@@ -4,7 +4,7 @@ class CreateResources < ActiveRecord::Migration[8.0]
       t.string :name
       t.string :resource_type
       t.integer :xp_value
-      t.decimal :average_price
+      t.integer :average_price
       t.text :description
 
       t.timestamps
